@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bus Ticket Booking</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="transport.html">Transport</a>
+        <a href="grocery.html">Grocery</a>
+        <a href="shopping.html">Shopping</a>
+    </nav>
+    
+    <div class="container">
+        <div class="product-details">
+            <div class="product-image">
+                <img src="./bus.avif" alt="Luxury Bus">
+            </div>
+            
+            <div class="product-info">
+                <h2>Premium Bus Service</h2>
+                <p>Travel in comfort with our luxury bus service. Enjoy spacious seating, onboard entertainment, and refreshments.</p>
+                
+                <div class="price">$25 - $50</div>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="from">From:</label>
+                        <input type="text" id="from" name="from" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="to">To:</label>
+                        <input type="text" id="to" name="to" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Travel Date:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="passengers">Passengers:</label>
+                        <input type="number" id="passengers" name="passengers" min="1" max="10" value="1">
+                    </div>
+                    
+                    <button type="submit" class="btn">Check Availability</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 MultiService Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

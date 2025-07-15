@@ -1,0 +1,33 @@
+{
+  "transport": [
+    { "id": 1, "name": "Bus", "details": "Local and intercity bus booking" },
+    { "id": 2, "name": "Train", "details": "Book train tickets easily" },
+    { "id": 3, "name": "Aeroplane", "details": "Book domestic and international flights" }
+  ],
+  "grocery": [
+    {
+      "id": 1,
+      "name": "Apples",
+      "price": "₹100/kg"
+    },
+    {
+      "id": 2,
+      "name": "Milk",
+      "price": "₹60/litre"
+    }
+  ],
+  "shopping": [
+    {
+      "id": 1,
+      "name": "T-shirt",
+      "category": "Men",
+      "price": "₹499"
+    },
+    {
+      "id": 2,
+      "name": "Smartphone",
+      "category": "Electronics",
+      "price": "₹9999"
+    }
+  ]
+}

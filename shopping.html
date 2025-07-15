@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Mall</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Shopping Mall</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="transport.html">Transport</a>
+        <a href="grocery.html">Grocery</a>
+        <a href="shopping.html">Shopping</a>
+    </nav>
+    
+    <div class="container">
+        <h2>Shop Categories</h2>
+        <p>Find everything you need in one place</p>
+        
+        <div class="category-grid">
+            <div class="category-card" onclick="window.location.href='mens.html'">
+                <img src="./men.jpg" alt="Men's Fashion">
+                <div class="category-info">
+                    <h3>Men's Fashion</h3>
+                    <p>Trendy clothes for men</p>
+                    <a href="mens.html" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <div class="category-card" onclick="window.location.href='womens.html'">
+                <img src="./women.jpg" alt="Women's Fashion">
+                <div class="category-info">
+                    <h3>Women's Fashion</h3>
+                    <p>Stylish clothes for women</p>
+                    <a href="womens.html" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <div class="category-card" onclick="window.location.href='electronics.html'">
+                <img src="./electronic.jpg" alt="Electronics">
+                <div class="category-info">
+                    <h3>Electronics</h3>
+                    <p>Latest gadgets and devices</p>
+                    <a href="electronics.html" class="btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 MultiService Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

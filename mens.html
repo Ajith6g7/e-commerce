@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Clothing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .clothing-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .clothing-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .clothing-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        .clothing-item img:hover {
+            transform: scale(1.05);
+        }
+        .clothing-item h3 {
+            margin: 10px 0;
+            color: #444;
+        }
+        .price {
+            font-weight: bold;
+            color: #2a9d8f;
+            margin: 10px 0;
+        }
+        .add-to-cart {
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .add-to-cart:hover {
+            background-color: #21867a;
+        }
+        .cart-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .cart-toggle:hover {
+            background-color: #21867a;
+        }
+        .cart-container {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            width: 300px;
+            display: none;
+            z-index: 100;
+        }
+        .cart-container.visible {
+            display: block;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-total {
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+        #cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .cart-count {
+            background-color: #e63946;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Men's Clothing Collection</h1>
+    
+    <button class="cart-toggle">
+        Cart <span id="cart-count" class="cart-count">0</span>
+    </button>
+    
+    <div class="cart-container" id="cart-container">
+        <h3>Your Shopping Cart</h3>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+            Total: $<span id="cart-total">0.00</span>
+        </div>
+    </div>
+    
+    <div class="clothing-container">
+        <!-- Clothing Item 1 -->
+        <div class="clothing-item" data-id="1" data-name="Classic T-Shirt" data-price="19.99">
+            <img src="classic.jpg" alt="Men's T-Shirt" class="product-image">
+            <h3>Classic T-Shirt</h3>
+            <p class="price">$19.99</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        
+        <!-- Clothing Item 2 -->
+        <div class="clothing-item" data-id="2" data-name="Slim Fit Jeans" data-price="49.99">
+            <img src="slim fit.jpg" alt="Men's Jeans" class="product-image">
+            <h3>Slim Fit Jeans</h3>
+            <p class="price">$49.99</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        
+        <!-- Clothing Item 3 -->
+        <div class="clothing-item" data-id="3" data-name="Formal Shirt" data-price="39.99">
+            <img src="formal.jpg" alt="Men's Shirt" class="product-image">
+            <h3>Formal Shirt</h3>
+            <p class="price">$39.99</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        
+        <!-- Clothing Item 4 -->
+        <div class="clothing-item" data-id="4" data-name="Denim Jacket" data-price="59.99">
+            <img src="denim jacket.jpg" alt="Men's Jacket" class="product-image">
+            <h3>Denim Jacket</h3>
+            <p class="price">$59.99</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Clothing Item 5 -->
+        <div class="clothing-item" data-id="5" data-name="Casual Sneakers" data-price="69.99">
+            <img src="casual sneakers.jpg" alt="Men's Shoes" class="product-image">
+            <h3>Casual Sneakers</h3>
+            <p class="price">$69.99</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart from localStorage or create empty array
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Get DOM elements
+            const cartContainer = document.getElementById('cart-container');
+            const cartToggle = document.querySelector('.cart-toggle');
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartCountEl = document.getElementById('cart-count');
+            const cartTotalEl = document.getElementById('cart-total');
+            
+            // Toggle cart visibility
+            cartToggle.addEventListener('click', function() {
+                cartContainer.classList.toggle('visible');
+            });
+            
+            // Function to add item to cart
+            function addToCart(productItem) {
+                const productId = productItem.getAttribute('data-id');
+                const productName = productItem.getAttribute('data-name');
+                const productPrice = parseFloat(productItem.getAttribute('data-price'));
+                
+                // Add to cart
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice
+                });
+                
+                // Update display
+                updateCartDisplay();
+                
+                // Show cart automatically when adding an item
+                cartContainer.classList.add('visible');
+                
+                // Show confirmation (optional)
+                alert(`${productName} added to cart!`);
+            }
+            
+            // Function to update cart display
+            function updateCartDisplay() {
+                // Clear current display
+                cartItemsEl.innerHTML = '';
+                
+                // Calculate total and add items to display
+                let total = 0;
+                if (cart.length === 0) {
+                    cartItemsEl.innerHTML = '<p>Your cart is empty</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'cart-item';
+                        itemEl.innerHTML = `
+                            <span>${item.name}</span>
+                            <span>$${item.price.toFixed(2)}</span>
+                        `;
+                        cartItemsEl.appendChild(itemEl);
+                        total += item.price;
+                    });
+                }
+                
+                // Update count and total
+                cartCountEl.textContent = cart.length;
+                cartTotalEl.textContent = total.toFixed(2);
+                
+                // Save to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+            
+            // Add click event to all product images
+            document.querySelectorAll('.product-image').forEach(image => {
+                image.addEventListener('click', function() {
+                    const productItem = this.closest('.clothing-item');
+                    addToCart(productItem);
+                });
+            });
+            
+            // Add click event to all add-to-cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productItem = this.closest('.clothing-item');
+                    addToCart(productItem);
+                });
+            });
+            
+            // Initialize cart display
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>

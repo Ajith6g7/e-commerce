@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transport Services</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .category-card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .category-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .category-info {
+      padding: 15px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Transport Services</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="transport.html">Transport</a>
+    <a href="grocery.html">Grocery</a>
+    <a href="shopping.html">Shopping</a>
+  </nav>
+
+  <div class="container">
+    <h2>Choose Your Transport Mode</h2>
+    <p>Book tickets for your next journey</p>
+
+    <div class="category-grid" id="transport-list">
+      <!-- Transport cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script>
+    const imageMap = {
+      Bus: 'bus.avif',
+      Train: 'train.jpg',
+      Aeroplane: 'plane.jpg'
+    };
+
+    const pageMap = {
+      Bus: 'bus.html',
+      Train: 'train.html',
+      Aeroplane: 'aeroplane.html'
+    };
+
+    fetch('http://localhost:3000/transport')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('transport-list');
+        data.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'category-card';
+          div.onclick = () => window.location.href = pageMap[item.name] || '#';
+          div.innerHTML = `
+            <img src="./${imageMap[item.name] || 'default.jpg'}" alt="${item.name}">
+            <div class="category-info">
+              <h3>${item.name}</h3>
+              <p>${item.details}</p>
+              <a href="${pageMap[item.name] || '#'}" class="btn">Book Now</a>
+            </div>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(err => console.error('Error loading transport data:', err));
+  </script>
+
+  <footer>
+    <p>&copy; 2025 MultiService Platform. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>

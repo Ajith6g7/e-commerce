@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Grocery Store</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="transport.html">Transport</a>
+        <a href="grocery.html">Grocery</a>
+        <a href="shopping.html">Shopping</a>
+    </nav>
+    
+    <div class="container">
+        <h2>Fresh Groceries</h2>
+        <p>Get fresh groceries delivered to your doorstep</p>
+        
+        <div class="category-grid">
+            <div class="category-card" onclick="window.location.href='vegtables.html'">
+                <img src="./veg.jpg" alt="Vegetables">
+                <div class="category-info">
+                    <h3>Vegetables</h3>
+                    <p>Fresh seasonal vegetables</p>
+                    <a href="vegtables.html" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <div class="category-card" onclick="window.location.href='fruits.html'">
+                <img src="./fruit.jpg" alt="Fruits">
+                <div class="category-info">
+                    <h3>Fruits</h3>
+                    <p>Juicy and fresh fruits</p>
+                    <a href="fruits.html" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <div class="category-card" onclick="window.location.href='grain.html'">
+                <img src="./grain.jpg" alt="Rice and Grains">
+                <div class="category-info">
+                    <h3>Rice & Grains</h3>
+                    <p>Premium quality staples</p>
+                    <a href="grain.html" class="btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 MultiService Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>
